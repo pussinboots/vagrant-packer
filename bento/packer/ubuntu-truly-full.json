@@ -1,0 +1,51 @@
+{
+  "builders": [
+    {
+	  "type": "virtualbox-ovf",
+	  "source_path": "virtualbox/ubuntu-truly-jdk8.ova",
+	  "ssh_username": "vagrant",
+	  "ssh_password": "vagrant",
+	  "ssh_wait_timeout": "1200s",
+	  "shutdown_command": "echo 'packer' | sudo -S shutdown -P now",
+	  "headless": true
+    }
+  ],
+  "post-processors": [
+    {
+      "output": "../builds/{{.Provider}}/ubuntu-truly-full.box",
+      "type": "vagrant",
+	  "compression_level":9
+    }
+  ],
+  "provisioners": [
+    {
+      "environment_vars": [
+        "CHEF_VERSION={{user `chef_version`}}"
+      ],
+      "execute_command": "echo 'vagrant'|{{.Vars}} sudo -S -E bash '{{.Path}}'",
+      "scripts": [
+		"scripts/common/proxy.sh",
+		"scripts/ubuntu/update.sh",
+        "scripts/common/sshd.sh",
+        "scripts/ubuntu/networking.sh",
+        "scripts/ubuntu/sudoers.sh",
+        "scripts/common/vagrant.sh",
+		"scripts/common/chef.sh",
+		"scripts/ubuntu/packages/vboxguest.sh",
+		"scripts/ubuntu/packages/sublime3.sh",
+		"scripts/ubuntu/packages/travis.sh",
+		"scripts/ubuntu/packages/vboxguest.sh",
+		"scripts/ubuntu/packages/sbt.sh",
+		"scripts/ubuntu/packages/heroku.sh",
+		"scripts/ubuntu/packages/nodejs.sh",
+		"scripts/common/unproxy.sh",
+		"scripts/common/minimize.sh"
+      ],
+      "type": "shell"
+    }
+  ],
+  "variables": {
+    "chef_version": "provisionerless",
+    "mirror": "http://releases.ubuntu.com"
+  }
+}
