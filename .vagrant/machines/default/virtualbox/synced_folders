@@ -1,1 +1,0 @@
-{"virtualbox":{"/vagrant":{"mount_options":["dmode=755","fmode=755"],"guestpath":"/vagrant","hostpath":"D:/fit/workspace/vagrant-packer","disabled":false}}}
