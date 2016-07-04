@@ -87,7 +87,6 @@
 	"scripts/ubuntu/packages/java8.sh",
 	"scripts/ubuntu/packages/vboxguest.sh",
         "scripts/common/minimize.sh"
-        "scripts/common/minimize.sh"
       ],
       "type": "shell"
     }
