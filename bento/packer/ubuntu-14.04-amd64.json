@@ -30,6 +30,7 @@
       "guest_additions_path": "VBoxGuestAdditions_{{.Version}}.iso",
       "guest_os_type": "Ubuntu_64",
       "http_directory": "http",
+      "headless": "{{ user `headless` }}",
       "iso_checksum": "3ffb7a3690ce9a07ac4a4d1b829f990681f7e47d",
       "iso_checksum_type": "sha1",
       "iso_url": "{{user `mirror`}}/14.04/ubuntu-14.04.4-server-amd64.iso",
@@ -135,6 +136,7 @@
   ],
   "variables": {
     "chef_version": "provisionerless",
-    "mirror": "http://releases.ubuntu.com"
+    "mirror": "http://releases.ubuntu.com",
+    "headless": ""
   }
 }
